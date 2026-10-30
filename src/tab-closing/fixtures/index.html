@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><link rel="icon" href="data:,"><title>TC test page</title>
+<style>
+:root{color-scheme:light dark;--paper:#f6f7f4;--sheet:#fff;--ink:#1d2320;--soft:#4f5a54;--line:#dfe3dd;--accent:#256247}@media(prefers-color-scheme:dark){:root{--paper:#151917;--sheet:#1d2220;--ink:#e6ebe7;--soft:#b6c0b9;--line:#38443b;--accent:#a2d6b1}}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 system-ui,-apple-system,sans-serif}main{max-width:820px;margin:auto;padding:40px 24px}h1{font-size:clamp(36px,7vw,64px);line-height:1.2;margin:18px 0}.muted{color:var(--soft)}.panel{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:20px;margin:20px 0}label{display:block;font-weight:650}textarea{width:100%;min-height:140px;padding:12px;resize:vertical;font:inherit;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px}a{color:var(--accent)}nav{display:flex;gap:16px;flex-wrap:wrap}code{overflow-wrap:anywhere}#armed{font-weight:650}button{font:inherit;padding:8px 14px;border-radius:6px;background:var(--sheet);color:var(--ink);border:1px solid var(--line);cursor:pointer}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+</style></head><body><main><nav><a href="../">Back to test cases</a><a id="next" href="#">Visit another test page here</a><a id="new" href="#" target="_blank" rel="noopener">Open another test page in a new tab</a></nav><p class="muted">Disposable test page · No input collection · No form submission</p><h1 id="heading">Preparing test page</h1><div class="panel"><div>Batch: <code id="run"></code></div><div>Opening ID: <code id="instance"></code></div><div>Page type: <strong id="kind"></strong></div><p id="armed" role="status">Normal page: typing does not prevent leaving.</p></div><div class="panel"><label for="draft">Retention marker / temporary draft</label><p class="muted">Enter a marker such as KEEP-P-731. When checking a retained pin or bookmark page, compare both this text and the opening ID. This field is not saved by the site; do not enter personal information.</p><textarea id="draft" placeholder="Type a disposable test marker"></textarea><p><button id="disarm" type="button" hidden>Disable leave confirmation on this page</button></p></div><div class="panel"><h2>Optional media and download checks</h2><p class="muted">A quiet test tone starts only after you click; no microphone access is requested. The small text download checks the download UI. It does not establish coverage of an ongoing download or a close-during-download prompt.</p><button id="audio" type="button">Start test tone</button> <button id="download" type="button">Download disposable test text</button><p id="audio-status" role="status">Test tone has not started.</p></div><details><summary>How to judge results</summary><p>A normal page does not request leave confirmation. An unsaved-changes page enables it after you type. The browser controls the exact prompt wording. First check that the page says Leave confirmation enabled.</p><p>A saved entry remaining does not prove its original page stayed open. Compare its marker and opening ID. When reopening closed tabs, the browser may restore fields or create a new document; reopening cases do not require the opening ID to stay the same.</p><p>This page does not create pins, groups or split views and never closes tabs automatically. Perform browser actions yourself.</p></details></main><script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  let audioContext = null;
+  $('audio').addEventListener('click', async () => {
+    try {
+      if (audioContext) { await audioContext.close(); audioContext = null; $('audio').textContent = 'Start test tone'; $('audio-status').textContent = 'Test tone stopped.'; return; }
+      audioContext = new AudioContext();
+      const oscillator = audioContext.createOscillator(), gain = audioContext.createGain();
+      gain.gain.value = 0.015; oscillator.frequency.value = 220; oscillator.connect(gain); gain.connect(audioContext.destination);
+      await audioContext.resume(); oscillator.start(); $('audio').textContent = 'Stop test tone'; $('audio-status').textContent = 'Quiet test tone is playing. Check the tab audio and mute controls.';
+    } catch { if (audioContext) { audioContext.close(); audioContext = null; } $('audio-status').textContent = 'Audio is unavailable here. Record the environment limitation.'; }
+  });
+  window.addEventListener('pagehide', () => { if (audioContext) audioContext.close(); });
+  $('download').addEventListener('click', () => {
+    const url = URL.createObjectURL(new Blob(['Disposable Phi Browser tab-closing test file.\n'], {type:'text/plain;charset=utf-8'})), a = document.createElement('a');
+    a.href = url; a.download = 'TC-disposable-download.txt'; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+  const query = new URLSearchParams(location.search), label = (query.get('tab') || 'A').slice(0, 48), run = (query.get('run') || 'manual').slice(0, 48);
+  const unsaved = query.get('kind') === 'unsaved', longTitle = query.get('kind') === 'long';
+  document.title = 'TC-' + label + (longTitle ? ' · A deliberately long tab title for checking text truncation and close-control hit areas' : '') + ' · ' + run;
+  $('heading').textContent = 'TC-' + label; $('run').textContent = run; $('kind').textContent = unsaved ? 'Unsaved changes confirmation' : longTitle ? 'Normal page with a long title' : 'Normal page';
+  $('instance').textContent = crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2);
+  const next = new URL(location.href); next.searchParams.set('tab', label + '-away'); next.searchParams.set('kind', 'normal'); $('next').href = next.href; $('new').href = next.href;
+  const beforeUnload = event => { event.preventDefault(); event.returnValue = ''; };
+  if (unsaved) {
+    $('armed').textContent = 'Leave confirmation is not enabled yet. Type disposable text in the field first.';
+    $('draft').addEventListener('input', () => { window.addEventListener('beforeunload', beforeUnload); $('armed').textContent = 'Leave confirmation enabled: you can now test Cancel and Leave.'; $('disarm').hidden = false; });
+    $('disarm').addEventListener('click', () => { window.removeEventListener('beforeunload', beforeUnload); $('armed').textContent = 'Leave confirmation disabled. This test page is ready for cleanup.'; $('disarm').hidden = true; });
+  }
+})();
+</script></body></html>
