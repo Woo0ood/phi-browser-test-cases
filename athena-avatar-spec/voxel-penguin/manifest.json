@@ -1,0 +1,134 @@
+{
+ "id": "voxel-penguin",
+ "displayName": "企鹅",
+ "style": "voxel",
+ "bodyPlan": "biped",
+ "basePrompt": "Create a stylized character portrait of an original friendly mascot character named Nikai: a small chubby penguin standing upright, with a dark navy back and head, a white belly and face patch, a short orange beak, round dark eyes with small highlights, two short flippers that can hold things like hands, and a small teal knitted scarf.\nFraming: a half-body portrait facing the viewer, centered, from the top of the head down to the waist, both arms and hands visible. The head is in the upper part of the frame and the body fills about 90% of the frame height.\nExpression: warm, gentle and attentive, a small closed-mouth smile, looking straight at the viewer.\nBackground: plain, soft, very light warm gray, evenly lit, no texture, no floor, no shadow, no text, no logo, no border. No other characters or props.\nStyle: 3D voxel art built entirely from small cubes, like a MagicaVoxel render: every surface made of visible equal-size cubes, chunky blocky shapes, flat colors per cube with simple shading by face direction.",
+ "frames": {
+  "base": "base.jpg",
+  "working": "working.jpg",
+  "sleeping": "sleeping.jpg"
+ },
+ "clips": {
+  "idle-c1": {
+   "file": "clips/idle-c1.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 6
+  },
+  "idle-c2": {
+   "file": "clips/idle-c2.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 6
+  },
+  "idle-c3": {
+   "file": "clips/idle-c3.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 6
+  },
+  "idle": {
+   "file": "clips/idle.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "wave": {
+   "file": "clips/wave.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "listening": {
+   "file": "clips/listening.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "thinking": {
+   "file": "clips/thinking.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "working": {
+   "file": "clips/working.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "waiting": {
+   "file": "clips/waiting.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "sleeping": {
+   "file": "clips/sleeping.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 6
+  },
+  "done": {
+   "file": "clips/done.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "milestone": {
+   "file": "clips/milestone.webm",
+   "mimeType": "video/webm",
+   "kind": "open",
+   "seconds": 5
+  },
+  "delivered-doc": {
+   "file": "clips/delivered-doc.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 5
+  },
+  "delivered-image": {
+   "file": "clips/delivered-image.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 5
+  },
+  "delivered-file": {
+   "file": "clips/delivered-file.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 5
+  },
+  "oops": {
+   "file": "clips/oops.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "praised": {
+   "file": "clips/praised.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "curious": {
+   "file": "clips/curious.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "wakeup": {
+   "file": "clips/wakeup.webm",
+   "mimeType": "video/webm",
+   "kind": "wake",
+   "seconds": 4
+  },
+  "stretch": {
+   "file": "clips/stretch.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 5
+  }
+ }
+}

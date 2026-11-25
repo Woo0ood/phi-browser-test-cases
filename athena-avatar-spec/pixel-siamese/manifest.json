@@ -1,0 +1,142 @@
+{
+ "id": "pixel-siamese",
+ "displayName": "暹罗猫",
+ "style": "pixel",
+ "bodyPlan": "quadruped",
+ "basePrompt": "Create a stylized character portrait of an original friendly mascot character named Nikai: a slender young Siamese cat with a pale cream body, dark seal-brown points on its face mask, ears and front paws, bright sapphire-blue almond-shaped eyes, and a thin red collar with a tiny gold bell, sitting upright and facing the viewer.\nFraming: a half-body portrait facing the viewer, centered, from the top of the head (ears included) down to the chest, with both front paws visible at the bottom edge, resting side by side on the ground. The head is in the upper part of the frame and the body fills about 90% of the frame height.\nExpression: warm, gentle and attentive, a small closed-mouth smile, looking straight at the viewer.\nBackground: plain, soft, very light warm gray, evenly lit, no texture, no floor, no shadow, no text, no logo, no border. No other characters or props.\nStyle: refined pixel art, like a modern indie game portrait: a clearly visible square pixel grid, a limited palette of about 24 colors, crisp dark outlines, hand-placed highlights and shadow clusters, no anti-aliasing, no gradients.",
+ "frames": {
+  "base": "base.jpg",
+  "working": "working.jpg",
+  "sleeping": "sleeping.jpg"
+ },
+ "clips": {
+  "idle-c1": {
+   "file": "clips/idle-c1.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 6
+  },
+  "idle-c2": {
+   "file": "clips/idle-c2.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 6
+  },
+  "idle-c3": {
+   "file": "clips/idle-c3.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 6
+  },
+  "idle": {
+   "file": "clips/idle.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "wave": {
+   "file": "clips/wave.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "listening": {
+   "file": "clips/listening.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "thinking": {
+   "file": "clips/thinking.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "working": {
+   "file": "clips/working.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "waiting": {
+   "file": "clips/waiting.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 5
+  },
+  "sleeping": {
+   "file": "clips/sleeping.webm",
+   "mimeType": "video/webm",
+   "kind": "loop",
+   "seconds": 6
+  },
+  "done": {
+   "file": "clips/done.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "milestone": {
+   "file": "clips/milestone.webm",
+   "mimeType": "video/webm",
+   "kind": "open",
+   "seconds": 5
+  },
+  "delivered-doc": {
+   "file": "clips/delivered-doc.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 5
+  },
+  "delivered-image": {
+   "file": "clips/delivered-image.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 5
+  },
+  "delivered-file": {
+   "file": "clips/delivered-file.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 5
+  },
+  "oops": {
+   "file": "clips/oops.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "praised": {
+   "file": "clips/praised.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "curious": {
+   "file": "clips/curious.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 4
+  },
+  "wakeup": {
+   "file": "clips/wakeup.webm",
+   "mimeType": "video/webm",
+   "kind": "wake",
+   "seconds": 4
+  },
+  "stretch": {
+   "file": "clips/stretch.webm",
+   "mimeType": "video/webm",
+   "kind": "once",
+   "seconds": 5
+  }
+ },
+ "overrides": {
+  "framePrompts": {
+   "working": "Same character, same framing, same background as the attached image. A small open notebook now lies flat at the bottom edge of the frame, right in front of the cat, with its two front paws resting naturally on the ground on either side of the notebook, exactly where they are in the image. The cat looks down at the page with a calm, focused face. It does not hold anything: no pencil, no paw raised, no paw on the notebook. Nothing else changes."
+  },
+  "clipPrompts": {
+   "working": "The character is busy reading at the table: it looks down at the open notebook lying on the tabletop, its eyes move along the lines, it tilts its head slightly at something interesting and one ear twitches, then it keeps studying the page with a calm, focused face. Its front paws stay resting on the tabletop where they are the whole time, and the table and notebook do not move."
+  }
+ }
+}
